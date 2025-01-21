@@ -1,0 +1,147 @@
+import 'dart:convert';
+
+class MatchCommentary {
+  final String msg;
+  final bool status;
+  final Map<String, InningData> data;
+
+  MatchCommentary({required this.msg, required this.status, required this.data});
+
+  factory MatchCommentary.fromJson(Map<String, dynamic> json) {
+    return MatchCommentary(
+      msg: json['msg'],
+      status: json['status'],
+     data: json["data"] != null
+        ? json["data"].map<String, InningData>(
+            (key, value) => MapEntry(key.toString(), InningData.fromJson(value)),
+          )
+        : {},
+    );
+  }
+}
+
+class InningData {
+  final Map<String, List<Commentary>> overs;
+
+  InningData({required this.overs});
+
+  factory InningData.fromJson(Map<String, dynamic> json) {
+    return InningData(
+      overs: json.map<String, List<Commentary>>(
+          (key, value) => MapEntry(
+              key,
+              (value as List)
+                  .map((e) => Commentary.fromJson(e))
+                  .toList())),
+    );
+  }
+}
+
+class Commentary {
+  final int inning;
+  final int commentaryId;
+  final CommentaryData data;
+  final int type;
+
+  Commentary({
+    required this.inning,
+    required this.commentaryId,
+    required this.data,
+    required this.type,
+  });
+
+  factory Commentary.fromJson(Map<String, dynamic> json) {
+    return Commentary(
+      inning: json['inning'],
+      commentaryId: json['commentary_id'],
+      data: CommentaryData.fromJson(json['data']),
+      type: json['type'],
+    );
+  }
+}
+
+class CommentaryData {
+  final String wicket;
+  final String overs;
+  final String runs;
+  final String wides;
+  final String title;
+  final String description;
+  final String noballs;
+  final String legbyes;
+  final String byes;
+  final String? teamWicket;
+  final String? batsman1Runs;
+  final String? batsman1Name;
+  final String? batsman2Balls;
+  final String? bolwerOvers;
+  final String? wickets;
+  final String? over;
+  final String? team;
+  final String? bolwerName;
+  final String? teamScore;
+  final String? batsman2Runs;
+  final String? bolwerMaidens;
+  final String? bolwerWickets;
+  final String? bolwerRuns;
+  final String? batsman2Name;
+  final String? batsman1Balls;
+
+  CommentaryData({
+    required this.wicket,
+    required this.overs,
+    required this.runs,
+    required this.wides,
+    required this.title,
+    required this.description,
+    required this.noballs,
+    required this.legbyes,
+    required this.byes,
+    this.teamWicket,
+    this.batsman1Runs,
+    this.batsman1Name,
+    this.batsman2Balls,
+    this.bolwerOvers,
+    this.wickets,
+    this.over,
+    this.team,
+    this.bolwerName,
+    this.teamScore,
+    this.batsman2Runs,
+    this.bolwerMaidens,
+    this.bolwerWickets,
+    this.bolwerRuns,
+    this.batsman2Name,
+    this.batsman1Balls,
+  });
+
+  factory CommentaryData.fromJson(Map<String, dynamic> json) {
+    return CommentaryData(
+      wicket: json['wicket'] ?? "",
+      overs: json['overs'] ?? "",
+      runs: json['runs'] ?? "",
+      wides: json['wides'] ?? "",
+      title: json['title'] ?? "",
+      description: json['description'] ?? "",
+      noballs: json['noballs'] ?? "",
+      legbyes: json['legbyes'] ?? "",
+      byes: json['byes'] ?? "",
+      teamWicket: json['team_wicket'],
+      batsman1Runs: json['batsman_1_runs'],
+      batsman1Name: json['batsman_1_name'],
+      batsman2Balls: json['batsman_2_balls'],
+      bolwerOvers: json['bolwer_overs'],
+      wickets: json['wickets'],
+      over: json['over'],
+      team: json['team'],
+      bolwerName: json['bolwer_name'],
+      teamScore: json['team_score'],
+      batsman2Runs: json['batsman_2_runs'],
+      bolwerMaidens: json['bolwer_maidens'],
+      bolwerWickets: json['bolwer_wickets'],
+      bolwerRuns: json['bolwer_runs'],
+      batsman2Name: json['batsman_2_name'],
+      batsman1Balls: json['batsman_1_balls'],
+    );
+  }
+}
