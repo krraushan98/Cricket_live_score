@@ -48,7 +48,7 @@ class _MatchDetailPageState extends State<MatchDetailPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3, // ✅ Define tab count
+      length: 3, 
       child: SafeArea(
         child: Scaffold(
           // appBar: AppBar(title: Text('Match Details')),
@@ -155,9 +155,16 @@ class _MatchDetailPageState extends State<MatchDetailPage> {
                   ),
                 ),
 
-                /// ✅ TabBar just below the Container
+                
                 const TabBar(
                   labelColor: Colors.orange,
+                  indicator: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(color: Colors.orange, width: 2),
+                    ),
+                  ),
+                  indicatorColor: Colors.orange,
+                  indicatorWeight: 1,
                   tabs: [
                     Tab(text: 'Scorecard'),
                     Tab(text: 'Match Odds'),
@@ -254,7 +261,16 @@ class _MatchDetailPageState extends State<MatchDetailPage> {
       length: 2,
       child: Column(
         children: [
-          TabBar(labelColor: Colors.orange, tabs: [
+          TabBar(
+            labelColor: Colors.orange,
+            indicator: const BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(color: Colors.orange, width: 2),
+                    ),
+                  ),
+                  indicatorColor: Colors.orange,
+                  indicatorWeight: 1,
+           tabs: [
             Tab(text: scorecardList.first.team.name),
             Tab(text: scorecardList.last.team.name),
           ]),
@@ -437,7 +453,6 @@ class _MatchDetailPageState extends State<MatchDetailPage> {
             ),
             const Divider(thickness: 1),
             Expanded(
-              // ✅ Moved inside Column
               child: ListView.separated(
                 separatorBuilder: (context, index) =>
                     const Divider(thickness: 1),

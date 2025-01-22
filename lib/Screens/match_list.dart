@@ -18,7 +18,7 @@ class _MatchListState extends State<MatchList> {
 
   void autoCall() {
     timer = Timer.periodic(
-        const Duration(seconds: 10), (Timer t) => apiService.fetchMatches());
+        const Duration(minutes: 10), (Timer t) => apiService.fetchMatches());
   }
 
   @override
@@ -157,16 +157,22 @@ class _MatchListState extends State<MatchList> {
                       const SizedBox(height: 8),
 
                       // Match Venue
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(Icons.location_on, color: Colors.red),
-                          Text(
-                            match.venue ?? "Venue TBA",
-                            style: const TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.w500),
-                          ),
-                        ],
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(Icons.location_on, color: Colors.red),
+                            Text(
+                              match.venue ?? "Venue TBA",
+                              style: const TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.w500),
+                                  softWrap: true,
+                                  overflow: TextOverflow.visible,
+                                  maxLines: null,
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),

@@ -11,7 +11,7 @@ class ApiService extends GetxController {
     BaseOptions(
       baseUrl: 'https://cricket-live-line1.p.rapidapi.com',
       headers: {
-        'x-rapidapi-key': 'eedbad2a05mshfc6c3133d4ba150p1504a2jsn7fa90bfb69d3',
+        'x-rapidapi-key': '4b4292b826msh69923063d2e84f9p1fb3e9jsn836e66ae1c31',
         'Content-Type': 'application/json',
       },
     ),
